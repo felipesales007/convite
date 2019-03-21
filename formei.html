@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <!-- html 5 -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>#formei</title>
+
+    <!-- cor da barra do navegador em celulares -->
+    <meta name="theme-color" content="#075e55">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#075e55">
+    <meta name="msapplication-navbutton-color" content="#075e55">
+
+    <!-- icone do site -->
+    <link rel="icon" href="https://images.emojiterra.com/mozilla/512px/1f393.png">
+    <link rel="apple-touch-icon" href="https://images.emojiterra.com/mozilla/512px/1f393.png" sizes="76x76">
+</head>
+
+<style>
+    body,
+    html {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background-image: url(https://uploaddeimagens.com.br/images/001/745/909/original/background.png);
+        background-position: center center;
+        background-repeat:  no-repeat;
+        background-attachment: fixed;
+        background-size:  cover;
+        overflow: hidden;
+    }
+
+    ::-webkit-scrollbar {
+        width: 7px;
+        height: 7px;
+    }
+    
+    ::-webkit-scrollbar-track-piece {
+        background-color: transparent;
+    }
+    
+    ::-webkit-scrollbar-thumb:vertical,
+    ::-webkit-scrollbar-thumb:horizontal {
+        background-color: #075e55;
+        border-radius: 0;
+        -webkit-border-radius: 0;
+    }
+
+    .fe-corpo {
+        position: absolute;
+        display: flex;
+        background-color: #ffffff;
+        width: 1396px;
+        height: calc(100% - 38px);
+        top: 19px;
+        bottom: 19px;
+        border-radius: 3px;
+        -webkit-box-shadow: 0px 1.4px 7px -2px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 1.4px 7px -2px rgba(0,0,0,0.75);
+        box-shadow: 0px 1.4px 7px -2px rgba(0,0,0,0.75);
+    }
+
+    .fe-coluna-esquerda {
+        width: 590px;
+        height: 100%;
+    }
+
+    .fe-coluna-direita {
+        width: 815px;
+        height: 100%;
+    }
+
+    .fe-hide {
+        display: none;
+    }
+
+    .fe-hidden {
+        visibility: hidden;
+    }
+
+    .fe-center-y {
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .fe-center-x {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .fe-left {
+        float: left;
+    }
+
+    .fe-right {
+        float: right;
+    }
+
+    .fe-imagem {
+        width: 100%;
+        height: 100%;
+        border-bottom-left-radius: 3px;
+        border-top-left-radius: 3px;
+    }
+
+    .fe-mapa {
+        width: 100%;
+        height: 100%;
+        border-bottom-right-radius: 3px;
+        border-top-right-radius: 3px;
+    }
+
+    @media screen and (max-width: 1440px) {
+        .fe-corpo {
+            width: 100%;
+            height: 100%;
+            top: 0;
+            bottom: 0;
+            border-radius: 0;
+        }
+
+        .fe-coluna-esquerda {
+            width: 35%;
+        }
+        
+        .fe-coluna-direita {
+            width: 65%;
+            height: 100%;
+        }
+
+        .fe-imagem {
+            border-bottom-left-radius: 0px;
+            border-top-left-radius: 0px;
+        }
+
+        #map {
+            border-bottom-right-radius: 0px;
+            border-top-right-radius: 0px;
+        }
+    }
+
+    .fe-audio {
+        position: absolute;
+        width: 32%;
+        bottom: 0px;
+        background-color: #f1f3f4;
+        border-radius: 3px;
+    }
+
+    @media screen and (max-width: 992px) {
+        .fe-corpo {
+            display: inline-block;
+        }
+
+        .fe-coluna-esquerda {
+            width: 100%;
+        }
+        
+        .fe-coluna-direita {
+            position: absolute;
+            width: 93%;
+            height: 46%;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 100%;
+        }
+
+        .fe-mapa {
+            border-radius: 3px !important;
+            -webkit-box-shadow: 0px 1.4px 7px -2px rgba(0,0,0,0.75);
+            -moz-box-shadow: 0px 1.4px 7px -2px rgba(0,0,0,0.75);
+            box-shadow: 0px 1.4px 7px -2px rgba(0,0,0,0.75);
+        }
+    }
+
+    .fe-efeito-mobile {
+        top: 91%;
+        transition: .9s;
+    }
+
+    .fe-efeito-mobile-open {
+        top: 50.6%;
+        transition: .9s;
+    }
+
+    .fe-efeito-mobile-close {
+        transform: rotateX(180deg);
+    }
+
+    .fe-btn-mapa {
+        position: relative;
+        width: 35px;
+        height: 35px;
+        background-color: #ffffff;
+        top: -113%;
+        border-radius: 25px;
+        opacity: .6;
+        -webkit-box-shadow: 0px 1.4px 7px -2px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 1.4px 7px -2px rgba(0,0,0,0.75);
+        box-shadow: 0px 1.4px 7px -2px rgba(0,0,0,0.75);
+    }
+
+    .fe-btn-mapa img {
+        width: 35px;
+        margin-left: -8px;
+        margin-top: -3px;
+    }
+</style>
+
+<body>
+    <div class="fe-corpo fe-center-x">
+        <!-- esquerda -->
+        <div class="fe-coluna-esquerda">
+            <img class="fe-imagem" src="https://uploaddeimagens.com.br/images/001/862/328/original/Convite_Felipe.png">                
+        </div>
+        <!-- direita -->
+        <div id="fe-efeito-mobile" class="fe-coluna-direita">
+            <div id="map" class="fe-mapa"></div>
+            <button onclick="mostrarMapa();" class="fe-btn-mapa fe-right">
+                <img id="fe-efeito-mobile-close" src="https://secure.webtoolhub.com/static/resources/icons/set113/bab24ebe.png">
+            </button>
+			<iframe class="fe-audio fe-hide" width="560" height="315" src="https://www.youtube.com/embed/94Fuu3nmLWc?controls=0&autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+</body>
+
+<!-- javascript -->
+<script type="text/javascript">
+    setTimeout(function() {
+        $('#fe-efeito-mobile').addClass("fe-efeito-mobile");
+    }, 2000);
+
+    function mostrarMapa() {
+        if ($('#fe-efeito-mobile').hasClass("fe-efeito-mobile")) {
+            $('#fe-efeito-mobile').removeClass("fe-efeito-mobile");
+            $('#fe-efeito-mobile').addClass("fe-efeito-mobile-open");
+            $('#fe-efeito-mobile-close').addClass("fe-efeito-mobile-close");
+        } else {
+            $('#fe-efeito-mobile').addClass("fe-efeito-mobile");
+            $('#fe-efeito-mobile').removeClass("fe-efeito-mobile-open");
+            $('#fe-efeito-mobile-close').removeClass("fe-efeito-mobile-close");
+        }
+    }
+
+    var map, infoWindow;
+    var local = {lat: -12.939607, lng: -38.441598};
+    
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: local,
+            zoom: 13,
+        });
+
+        var marker = new google.maps.Marker({
+          position: local,
+          map: map,
+          title: 'Local da festa'
+        });
+
+        infoWindow = new google.maps.InfoWindow;
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+
+                infoWindow.setPosition(pos);
+                infoWindow.setContent('Você está aqui');
+                infoWindow.open(map);
+                // map.setCenter(pos);
+            }, function() {
+                handleLocationError(true, infoWindow, map.getCenter());
+            });
+        } else {
+            handleLocationError(false, infoWindow, map.getCenter());
+        }
+    }
+
+    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+        'Erro: O serviço de geolocalização falhou.' :
+        'Erro: Seu navegador não suporta geolocalização.');
+        // infoWindow.open(map);
+    }
+
+    function detectBrowser() {
+        var useragent = navigator.userAgent;
+        var mapdiv = document.getElementById("map");
+
+        if (useragent.indexOf('iPhone') != -1 || useragent.indexOf('Android') != -1 ) {
+            mapdiv.style.width = '100%';
+            mapdiv.style.height = '100%';
+        } else {
+            mapdiv.style.width = '600px';
+            mapdiv.style.height = '800px';
+        }
+    }
+</script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClQKPxu2yuMXwbI4vmsbODnrqD-bdYbfw&callback=initMap" async defer></script>
+</html>
